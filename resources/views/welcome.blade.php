@@ -1,0 +1,15 @@
+@extends('layouts.app')
+
+@push('scripts')
+{{--    <script src="{{ asset('resources/js/welcome.js') }}" defer></script>--}}
+    @vite('resources/js/welcome.js')
+@endpush
+
+@section('content')
+    <div class="welcome d-flex align-items-center justify-content-center">
+        <div class="text-center">
+            <h1 class="shadow bg-dark">Store Your Contacts Now</h1>
+            <a class="btn btn-lg btn-dark" href="register.php">Get Started</a>
+        </div>
+    </div>
+@endsection
