@@ -3,7 +3,6 @@
 }
 
 .welcome {
-    background: url('../img/villains.jpg');
-    background-position: center center;
+    background: url('../img/overlord.png') center center;
     background-size: cover;
 }

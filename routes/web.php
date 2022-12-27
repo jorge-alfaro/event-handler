@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +23,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/metas/add', function () {
+    return Response::view('metas.metas');
+});
+Route::post('/metas', function (Request $request) {
+    return Response::json(['message' => "Lina"])->setStatusCode(400);
+});
