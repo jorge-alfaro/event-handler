@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -29,3 +30,6 @@ Route::get('/metas/add', function () {
 Route::post('/metas', function (Request $request) {
     return Response::json(['message' => "Lina"])->setStatusCode(400);
 });
+
+Route::get('events/create',[EventController::class, 'create'])->name('events.create');
+Route::post('events/',[EventController::class, 'store'])->name('events.store');
