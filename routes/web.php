@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\MemberController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -24,12 +25,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/metas/add', function () {
-    return Response::view('metas.metas');
-});
-Route::post('/metas', function (Request $request) {
-    return Response::json(['message' => "Lina"])->setStatusCode(400);
-});
 
-Route::get('events/create',[EventController::class, 'create'])->name('events.create');
-Route::post('events/',[EventController::class, 'store'])->name('events.store');
+Route::middleware(['auth'])->group(function () {
+    // Only authenticated users may access this route...
+    Route::prefix('event')->group(function () {
+        Route::get('/', [EventController::class, 'index'])->name('events.index');
+        Route::get('/create',[EventController::class, 'create'])->name('events.create');
+        Route::post('/',[EventController::class, 'store'])->name('events.store');
+    });
+    Route::prefix('member')->group( function (){
+       Route::get('/',[MemberController::class, 'index'])->name('members.index');
+       Route::get('/create',[MemberController::class, 'create'])->name('members.create');
+       Route::post('/',[MemberController::class, 'store'])->name('members.store');
+    });
+
+});

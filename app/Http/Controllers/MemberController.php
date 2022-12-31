@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MemberController extends Controller
 {
@@ -14,7 +15,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        return view('members.index');
     }
 
     /**
@@ -24,18 +25,23 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('members.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            "events_id"
+        ]);
+        $event = Member::create($request->all());
+        return view('members.index');
     }
 
     /**

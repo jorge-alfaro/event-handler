@@ -10,6 +10,17 @@ class Member extends Model
     use HasFactory;
     protected $fillable = [
         "name",
-        "payment_status"
+        "events_id"
+    ];
+
+    protected $casts = [
+        'payment_status' => 'array'
+    ];
+
+    protected $attributes = [
+        'payment_status' => '{
+            "abonado": false,
+            "pagado": false
+        }'
     ];
 }
