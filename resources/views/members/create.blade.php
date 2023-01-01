@@ -14,7 +14,7 @@
                             <div class="">
                                 <div class="mb-2">
                                     <label for="event_id" class="form-label mt-4">Example select</label>
-                                    <select class="form-select" id="events_id" name="events_id">
+                                    <select required class="form-select" id="event_id" name="event_id">
                                         {{ $events = Event::all() }}
                                         @foreach($events as $event)
                                             <option value="{{ $event->id }}">{{ $event->name }}</option>

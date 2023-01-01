@@ -12,4 +12,13 @@ class Event extends Model
     protected $fillable = [
         "name"
     ];
+
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
+    public function member()
+    {
+        return $this->hasMany(Member::class);
+    }
 }

@@ -41,7 +41,8 @@ class MemberController extends Controller
             "events_id"
         ]);
         $event = Member::create($request->all());
-        return view('members.index');
+        return redirect('/');
+//        return view('members.index');
     }
 
     /**

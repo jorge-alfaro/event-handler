@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name',150);
             $table->decimal('price');
-            $table->unsignedBigInteger('events_id');
+            $table->unsignedBigInteger('event_id');
             $table->timestamps();
 
-            $table->foreign('events_id')->references('id')->on('events');
+            $table->foreign('event_id')->references('id')->on('events');
         });
     }
 

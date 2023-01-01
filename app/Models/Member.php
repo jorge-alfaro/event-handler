@@ -10,7 +10,7 @@ class Member extends Model
     use HasFactory;
     protected $fillable = [
         "name",
-        "events_id"
+        "event_id"
     ];
 
     protected $casts = [
@@ -18,9 +18,6 @@ class Member extends Model
     ];
 
     protected $attributes = [
-        'payment_status' => '{
-            "abonado": false,
-            "pagado": false
-        }'
+        'payment_status' => '{"abonado": false,"pagado": false }'
     ];
 }

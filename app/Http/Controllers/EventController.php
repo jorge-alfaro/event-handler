@@ -40,7 +40,10 @@ class EventController extends Controller
             'name' => 'required'
         ]);
        $event = Event::create($request->all());
-       return view('event.index');
+       $event->status = 1;
+       $event->save();
+        return redirect('/');
+//       return view('event.index');
     }
 
     /**
