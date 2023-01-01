@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@push('scripts')
-    @vite('resources/js/welcome.js')
-@endpush
-
 @section('content')
     {{--    <div class="welcome d-flex align-items-center justify-content-center">--}}
     {{--        <div class="text-center">--}}
