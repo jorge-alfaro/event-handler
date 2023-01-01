@@ -30,7 +30,9 @@ Route::get('/', function () {
     $members = array();
 
     $event = Event::query()->where('status', '=', $active)->first();
-    $memberCount = $event->member->count();
+    if ($event) {
+        $memberCount = $event->member->count();
+
     foreach ($event->product as $e) {
         $products[] = $e;
         $total += $e->price;
@@ -38,8 +40,9 @@ Route::get('/', function () {
     if ($memberCount > 0) {
         $theCheck = $total / $memberCount;
     }
-    foreach ($event->member as $m){
+    foreach ($event->member as $m) {
         $members[] = $m;
+    }
     }
 
     $total = number_format((float)$total, 2, '.', ',');

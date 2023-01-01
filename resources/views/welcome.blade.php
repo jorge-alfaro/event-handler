@@ -16,7 +16,12 @@
             <div class="col">
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action active">Evento</a>
-                    <a href="#" class="list-group-item list-group-item-action">{{ $event->name }}</a>
+                    @if($event)
+                        <a href="#" class="list-group-item list-group-item-action">{{ $event->name }}</a>
+                    @else
+                        <a href="#" class="list-group-item list-group-item-action"> No hay eventos activos</a>
+                    @endif
+
                     {{--                    <a href="#" class="list-group-item list-group-item-action disabled">Morbi leo risus</a>--}}
                 </div>
             </div>
