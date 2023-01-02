@@ -21,7 +21,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <img src="https://www.svgrepo.com/show/330485/furrynetwork.svg" class="me-1" style="width: 25px;" alt="logo">
+                <img src="{{ Vite::asset('resources/img/identicon.svg') }}" class="me-1" alt="logo">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
