@@ -40,10 +40,22 @@ class EventController extends Controller
             'name' => 'required'
         ]);
        $event = Event::create($request->all());
-       $event->status = 1;
-       $event->save();
-        return redirect('/');
-//       return view('event.index');
+//       $event->status = 1;
+//       $event->save();
+       return view('event.index');
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $event = Event::find($request->event_id);
+        if ($event->status){
+            $event->status = false;
+        }else {
+            $event->status = true;
+        }
+        $event->update();
+
+        return redirect('event/')->with('status', 'Evento actualizado!');
     }
 
     /**

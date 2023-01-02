@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    <h3 class="">{{ $greetings }} - {{ date('d-m-Y')  }}</h3>
                     {{ __('You are logged in!') }}
                 </div>
             </div>

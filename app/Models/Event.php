@@ -12,7 +12,9 @@ class Event extends Model
     protected $fillable = [
         "name"
     ];
-
+    protected $casts = [
+        'status' => 'boolean',
+    ];
     public function product()
     {
         return $this->hasMany(Product::class);

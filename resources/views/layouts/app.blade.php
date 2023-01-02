@@ -36,7 +36,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto text-center">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -51,11 +51,21 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('products.create') }}">Productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('members.create') }}">Miembros</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('events.index') }}">Eventos</a>
+                            </li>
+                            <li class="nav-item dropdown bg-info rounded-3">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item bg-info" href="{{ route('home') }}">Perfil</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -68,15 +78,7 @@
                                     </form>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('products.create') }}">Productos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('members.create') }}">Miembros</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('events.create') }}">Evento</a>
-                            </li>
+
                         @endguest
                     </ul>
                 </div>

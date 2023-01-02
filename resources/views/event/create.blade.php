@@ -11,31 +11,23 @@
                         <form method="POST" action="{{ route('events.store') }}">
                             @csrf
                             <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
-
+                                <label for="name" class="col-md-4 col-form-label text-md-end">Nombre</label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input id="name" type="text" class="form-control" name="name"
+                                           placeholder="Ejemplo fiesta de cumpleaños"
+                                           required>
                                 </div>
                             </div>
-
-{{--                            <div class="row mb-3">--}}
-{{--                                <label for="description" class="col-md-4 col-form-label text-md-end">Descripción</label>--}}
-
-{{--                                <div class="col-md-6">--}}
-{{--                                    <input id="description" type="text" class="form-control" name="description" value="{{ old('description') }}" required autocomplete="description">--}}
-
-{{--                                </div>--}}
-{{--                            </div>--}}
-
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                       Guardar
+                                        Guardar
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>
