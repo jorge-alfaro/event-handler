@@ -1,16 +1,7 @@
 {
-  "resources/img/overlord.png": {
-    "file": "assets/overlord.028139ba.png",
-    "src": "resources/img/overlord.png"
-  },
   "resources/js/app.js": {
     "file": "assets/app.ed456613.js",
     "src": "resources/js/app.js",
-    "isEntry": true
-  },
-  "resources/css/app.css": {
-    "file": "assets/app.728158bf.css",
-    "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/sass/app.scss": {
