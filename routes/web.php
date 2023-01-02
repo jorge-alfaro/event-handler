@@ -49,7 +49,7 @@ Route::get('/', function () {
     $theCheck = number_format((float)$theCheck, 2, '.', ',');
 
     return view('welcome', compact('event', 'products', 'total', 'theCheck', 'members'));
-});
+})->name('main');
 
 Auth::routes();
 

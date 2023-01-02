@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Event;
+use App\Models\Member;
+use Carbon\Carbon;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -19,20 +23,17 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
-    public function index()
+    public function index(): Renderable
     {
         $greetings = "";
 
-        /* This sets the $time variable to the current hour in the 24 hour clock format */
+        /* This sets the $time variable to the current hour in the 24 hours clock format */
         $time = date("H");
 
-        /* Set the $timezone variable to become the current timezone */
-        $timezone = date("e");
-
         /* If the time is less than 1200 hours, show good morning */
-        if($time < "6"){
+        if ($time < "6") {
             $greetings = "Buenas madrugadas!";
         }
         if ($time >= "6" && $time < "12") {
@@ -53,7 +54,17 @@ class HomeController extends Controller
                     if ($time >= "19") {
                         $greetings = "Buena noche";
                     }
+        // instances
+        $activeEvent = Event::query()->where('status', true)->first();
 
-        return view('home',compact('greetings'));
+        if (!is_null($activeEvent)) {
+            $countMembers = Member::query()->where('event_id', $activeEvent->id)->count();
+            $eventName = $activeEvent->name;
+        } else {
+            $eventName = 'No hay.';
+        }
+        $timeAgo = $activeEvent->created_at->diffForHumans();
+
+        return view('home', compact('greetings', 'eventName', 'timeAgo', 'countMembers'));
     }
 }
