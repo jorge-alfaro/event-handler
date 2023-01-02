@@ -11,9 +11,6 @@
                     </a>
                 </div>
                 @if (session('status'))
-                    <div class="alert alert-success">
-
-                    </div>
                     <div class="alert alert-dismissible alert-success">
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         <strong> {{ session('status') }}</strong>
@@ -34,11 +31,12 @@
                         </ul>
                     </div>
                 </div>
-                <form action="{{ route('events.update') }}">
+                <form method="POST" action="{{ route('events.update') }}">
                     @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="event_id" class="form-label mt-4">Cambia el estatus del evento..</label>
-                        <select class="form-select" id="event_id">
+                        <select class="form-select" id="event_id" name="event_id">
                             @foreach(Event::all() as $eve)
                                 <option value="{{ $eve->id }}">{{$eve->name}}</option>
                             @endforeach

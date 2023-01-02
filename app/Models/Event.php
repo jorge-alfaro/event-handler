@@ -10,7 +10,8 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = [
-        "name"
+        "name",
+        "event_id"
     ];
     protected $casts = [
         'status' => 'boolean',

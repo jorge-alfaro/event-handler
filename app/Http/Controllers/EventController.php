@@ -47,6 +47,7 @@ class EventController extends Controller
 
     public function changeStatus(Request $request)
     {
+        Log::debug($request->event_id);
         $event = Event::find($request->event_id);
         if ($event->status){
             $event->status = false;
