@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class EventController extends Controller
@@ -40,14 +41,11 @@ class EventController extends Controller
             'name' => 'required'
         ]);
        $event = Event::create($request->all());
-//       $event->status = 1;
-//       $event->save();
        return view('event.index');
     }
 
     public function changeStatus(Request $request)
     {
-        Log::debug($request->event_id);
         $event = Event::find($request->event_id);
         if ($event->status){
             $event->status = false;
@@ -102,5 +100,12 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         //
+    }
+
+    public function addTheCheck($theCheckTotal, $eventActive){
+        DB::beginTransaction();
+        $eventActive->the_check = $theCheckTotal;
+        $eventActive->update();
+        DB::commit();
     }
 }

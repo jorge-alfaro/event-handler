@@ -16,6 +16,10 @@ class Event extends Model
     protected $casts = [
         'status' => 'boolean',
     ];
+
+    public function theCheck(){
+        return $this->the_check;
+    }
     public function product()
     {
         return $this->hasMany(Product::class);

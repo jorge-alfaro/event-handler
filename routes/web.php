@@ -47,6 +47,8 @@ Route::get('/', function () {
 
     $total = number_format((float)$total, 2, '.', ',');
     $theCheck = number_format((float)$theCheck, 2, '.', ',');
+    // add the_check in column event
+    (new EventController())->addTheCheck($total, $event);
 
     return view('welcome', compact('event', 'products', 'total', 'theCheck', 'members'));
 })->name('main');

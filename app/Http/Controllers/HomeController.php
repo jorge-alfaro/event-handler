@@ -32,6 +32,8 @@ class HomeController extends Controller
         /* This sets the $time variable to the current hour in the 24 hours clock format */
         $time = date("H");
 
+        //TODO add icons to greetings
+
         /* If the time is less than 1200 hours, show good morning */
         if ($time < "6") {
             $greetings = "Buenas madrugadas!";
@@ -39,32 +41,35 @@ class HomeController extends Controller
         if ($time >= "6" && $time < "12") {
             $greetings = "Buen dia!";
         } else
-
             /* If the time is grater than or equal to 1200 hours, but less than 1700 hours, so good afternoon */
             if ($time >= "12" && $time < "17") {
-                $greetings = "Buena tarde!";
+                $greetings = "Buenas tardes!";
             } else
 
                 /* Should the time be between or equal to 1700 and 1900 hours, show good evening */
                 if ($time >= "17" && $time < "19") {
-                    $greetings = "Buena tarde";
+                    $greetings = "Buenas tardes!";
                 } else
 
                     /* Finally, show good night if the time is greater than or equal to 1900 hours */
                     if ($time >= "19") {
-                        $greetings = "Buena noche";
+                        $greetings = "Buenas noches!";
                     }
         // instances
         $activeEvent = Event::query()->where('status', true)->first();
-
+        //default data
+        $countMembers = 0;
+        $eventName = 'No hay.';
+        $totalCheckEvent = 0;
+        $timeAgo = 'crea un evento';
         if (!is_null($activeEvent)) {
             $countMembers = Member::query()->where('event_id', $activeEvent->id)->count();
             $eventName = $activeEvent->name;
-        } else {
-            $eventName = 'No hay.';
+            $totalCheckEvent = $activeEvent->theCheck();
+            $timeAgo = $activeEvent->created_at->diffForHumans();
         }
-        $timeAgo = $activeEvent->created_at->diffForHumans();
 
-        return view('home', compact('greetings', 'eventName', 'timeAgo', 'countMembers'));
+
+        return view('home', compact('greetings', 'eventName', 'timeAgo', 'countMembers','totalCheckEvent'));
     }
 }

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Home') }}   {{ __('You are logged in!') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,6 @@
                         </div>
                     @endif
                     <h3 class="">{{ $greetings }} - {{ date('d-m-Y')  }}</h3>
-                    {{ __('You are logged in!') }}
 
                 </div>
                 <div>
@@ -38,6 +37,7 @@
                     </div>
                 </div>
             </div>
+            <p class="text-info">La cuenta hasta ahora: $ {{ $totalCheckEvent }}</p>
         </div>
     </div>
 </div>
