@@ -6,9 +6,53 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="text-center">
-                    <a href="{{ route('events.create') }}">
-                        <button type="button" class="btn btn-light">Agregar un evento</button>
-                    </a>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary rounded-start" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Crear
+                        </button>
+                        <button type="button" class="btn btn-secondary me-1 ms-1">Edita</button>
+                        <button type="button" class="btn btn-secondary rounded-end">Elimina</button>
+                    </div>
+                </div>
+
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Evento</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-8">
+                                    <div class="card">
+                                        <div class="card-header">Agrega un evento</div>
+
+                                        <div class="card-body">
+                                            <form method="POST" action="{{ route('events.store') }}">
+                                                @csrf
+                                                <div class="row mb-3">
+                                                    <label for="name" class="col-md-4 col-form-label text-md-end">Nombre</label>
+                                                    <div class="col-md-6">
+                                                        <input id="name" type="text" class="form-control" name="name"
+                                                               placeholder="Ejemplo fiesta de cumpleaños"
+                                                               required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-0">
+                                                    <div class="col-md-6 offset-md-4">
+                                                        <button type="submit" class="btn btn-primary">
+                                                            Guardar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 {{--                @if (session('status'))--}}
 {{--                    <div class="alert alert-dismissible alert-success">--}}
