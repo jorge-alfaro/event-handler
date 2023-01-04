@@ -10,7 +10,7 @@
     <meta property="og:title" content="Proyectos personales"/>
     <meta property="og:description" content="Creado en Laravel 9 + vite php 8.1">
     <meta property="og:url" content="https://31.alfaro.pw" />
-    <meta property="og:image" content="https://img4.goodfon.com/wallpaper/nbig/8/3c/firewatch-ptitsy-campo-santo-kholmy-vid-les-igra-peizazh-gor.jpg" />
+    <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/pocket-76717.appspot.com/o/1200x630.jpg?alt=media&token=48c78996-c749-4040-8b38-03ffd7210690" />
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/jpg">
