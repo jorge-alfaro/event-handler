@@ -13,7 +13,7 @@
     <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/pocket-76717.appspot.com/o/1200x630.jpg?alt=media&token=48c78996-c749-4040-8b38-03ffd7210690" />
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:type" content="image/jpg">
+    <meta property="og:image:type" content="image/jpeg">
     <meta property="og:site_name" content="Event-handler" />
     <meta name="googlebot" content="noindex">
     <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
