@@ -24,7 +24,7 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     {{ $event->name }}
                                     <span
-                                        class="badge bg-primary rounded-pill">{{( $event->status === 1) ? 'Activo' : 'Inactivo'  }}</span>
+                                        class="badge bg-primary rounded-pill">{{( $event->status === true) ? 'Activo' : 'Inactivo'  }}</span>
                                 </li>
                             @endforeach
                         </ul>
@@ -35,12 +35,18 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="event_id" class="form-label mt-4">Cambia el estatus del evento..</label>
-                        <select class="form-select" id="event_id" name="event_id">
-                            @foreach(Event::all() as $eve)
-                                <option value="{{ $eve->id }}">{{$eve->name}} @if($event->status)  - evento activo @endif</option>
-                            @endforeach
-                        </select>
-                    <button class="btn btn-outline-danger" type="submit">Cambiar</button>
+                        <div class="d-flex">
+                            <select class="form-select" id="event_id" name="event_id">
+                                @if(count(Event::all()) == 0)
+                                    <option value="">No hay eventos creados</option>
+                                @endif
+                                @foreach(Event::all() as $eve)
+{{--                                    //Active the status TODO--}}
+                                    <option value="{{ $eve->id }}">{{$eve->name}} @if($event->status) OKO @endif</option>
+                                @endforeach
+                            </select>
+                            <button class="btn btn-outline-danger" type="submit">Cambiar</button>
+                        </div>
                     </div>
                 </form>
             </div>

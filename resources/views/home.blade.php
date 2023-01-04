@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Home') }}   {{ __('You are logged in!') }}</div>
+                <div class="card-header"> {{ $greetings }}  {{ $string = Str::of(Auth::user()->name)->ucfirst() }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,7 +13,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <h3 class="">{{ $greetings }} - {{ date('d-m-Y')  }}</h3>
 
                 </div>
                 <div>

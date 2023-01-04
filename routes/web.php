@@ -33,22 +33,23 @@ Route::get('/', function () {
     if ($event) {
         $memberCount = $event->member->count();
 
-    foreach ($event->product as $e) {
-        $products[] = $e;
-        $total += $e->price;
-    }
-    if ($memberCount > 0) {
-        $theCheck = $total / $memberCount;
-    }
-    foreach ($event->member as $m) {
-        $members[] = $m;
-    }
+        foreach ($event->product as $e) {
+            $products[] = $e;
+            $total += $e->price;
+        }
+        if ($memberCount > 0) {
+            $theCheck = $total / $memberCount;
+        }
+        foreach ($event->member as $m) {
+            $members[] = $m;
+        }
     }
 
-    $total = number_format((float)$total, 2, '.', ',');
+        $total = number_format((float)$total, 2, '.', ',');
+        (new EventController())->addTheCheck($total, $event);
+
     $theCheck = number_format((float)$theCheck, 2, '.', ',');
     // add the_check in column event
-    (new EventController())->addTheCheck($total, $event);
 
     return view('welcome', compact('event', 'products', 'total', 'theCheck', 'members'));
 })->name('main');
