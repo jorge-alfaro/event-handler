@@ -7,11 +7,16 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Open Graph -->
-    <meta property="og:title" content="Event-handler"/>
+    <meta property="og:site_name" content="Event-handler" />
+    <meta property="og:title" content="Proyectos personales"/>
+    <meta property="og:description" content="Creado en Laravel 9 + vite php 8.1">
     <meta property="og:url" content="https://31.alfaro.pw" />
     <meta property="og:image" content="https://img4.goodfon.com/wallpaper/nbig/8/3c/firewatch-ptitsy-campo-santo-kholmy-vid-les-igra-peizazh-gor.jpg" />
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:locale" content="es_ES">
     <meta property="og:type" content="application" />
-    <meta property="og:site_name" content="AlfaroDev" />
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ Vite::asset('resources/favicon/apple-touch-icon.png') }}">
