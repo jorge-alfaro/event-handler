@@ -13,7 +13,13 @@
     <meta property="og:image" content="https://img4.goodfon.com/wallpaper/nbig/8/3c/firewatch-ptitsy-campo-santo-kholmy-vid-les-igra-peizazh-gor.jpg" />
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpg">
     <meta property="og:site_name" content="Event-handler" />
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:label1" content="Developer">
+    <meta name="twitter:data1" content="Jorge Alfaro">
     <meta property="og:type" content="application" />
 
     <!-- Favicon -->
