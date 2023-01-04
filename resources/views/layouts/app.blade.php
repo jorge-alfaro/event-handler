@@ -13,7 +13,6 @@
     <meta property="og:image" content="https://img4.goodfon.com/wallpaper/nbig/8/3c/firewatch-ptitsy-campo-santo-kholmy-vid-les-igra-peizazh-gor.jpg" />
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:type" content="image/jpg">
     <meta property="og:site_name" content="Event-handler" />
     <meta property="og:locale" content="es_ES">
     <meta property="og:type" content="application" />
