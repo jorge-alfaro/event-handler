@@ -6,6 +6,17 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Event-handler"/>
+    <meta property="og:url" content="https://31.alfaro.pw" />
+    <meta property="og:image" content="https://img4.goodfon.com/wallpaper/nbig/8/3c/firewatch-ptitsy-campo-santo-kholmy-vid-les-igra-peizazh-gor.jpg" />
+    <meta property="og:type" content="application" />
+    <meta property="og:site_name" content="AlfaroDev" />
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ Vite::asset('resources/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ Vite::asset('resources/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ Vite::asset('resources/favicon/favicon-16x16.png') }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
