@@ -65,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/create', [EventController::class, 'create'])->name('events.create');
         Route::post('/', [EventController::class, 'store'])->name('events.store');
         Route::put('/', [EventController::class, 'changeStatus'])->name('events.change');
+        Route::put('/update', [EventController::class, 'update'])->name('events.update');
     });
     Route::prefix('member')->group(function () {
         Route::get('/', [MemberController::class, 'index'])->name('members.index');

@@ -31,7 +31,9 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-8">
                                     <div class="card">
-                                        <div class="card-header"><i class="fa-brands fa-get-pocket"></i>  Agrega un evento</div>
+                                        <div class="card-header"><i class="fa-brands fa-get-pocket"></i> Agrega un
+                                            evento
+                                        </div>
 
                                         <div class="card-body">
                                             <form method="POST" action="{{ route('events.store') }}">
@@ -74,30 +76,73 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-8">
                                     <div class="card">
-                                        <div class="card-header"><i class="fa-solid fa-wand-magic-sparkles"></i>  Edita un evento</div>
+                                        <div class="card-header"><i class="fa-solid fa-wand-magic-sparkles"></i> Edita
+                                            un evento
+                                        </div>
                                         <div class="card-body">
-                                            <!--foreach TODO-->
-                                            <form method="POST" action="{{ route('events.create') }}">
-                                                @csrf
-                                                <div class="form-group">
+                                            <!--foreach -->
+                                            @foreach(Event::query()->where('status',true)->get() as $editEvent)
+                                                <form method="POST" action="{{ route('events.update') }}">
+                                                    @csrf
+                                                    @method('PUT')
                                                     <div class="form-group">
-                                                        <div class="input-group mb-3">
-                                                            <input type="text" class="form-control" id="name"
-                                                                   name="name" value="" required
-                                                                   placeholder="Ejemplo fiesta de cumpleaños"
-                                                                   aria-label="Ejemplo fiesta de cumpleaños"
-                                                                   aria-describedby="button-addon2">
-                                                            <button class="btn btn-success" type="button"
-                                                                    id="button-addon2">Guardar
-                                                            </button>
+                                                        <div class="form-group">
+                                                            <div class="input-group mb-3">
+                                                                <input type="hidden" value="{{ $editEvent->id }}"
+                                                                       name="edit_id">
+                                                                <input type="text" class="form-control" id="name"
+                                                                       name="name" value="{{ $editEvent->name }}"
+                                                                       required
+                                                                       placeholder="Ejemplo fiesta de cumpleaños"
+                                                                       aria-label="Ejemplo fiesta de cumpleaños"
+                                                                       aria-describedby="button-addon2">
+                                                                <button class="btn btn-success" type="submit"
+                                                                        id="button-addon2">Actualizar
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            @endforeach
                                             <!--endforeach -->
                                         </div>
-
                                     </div>
+                                        <div class="accordion mt-3" id="accordionExample">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="headingTwo">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                        Eventos antiguos
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        @foreach(Event::query()->where('status',false)->get() as $editEvent)
+                                                            <form method="POST" action="{{ route('events.update') }}">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <div class="form-group">
+                                                                    <div class="form-group">
+                                                                        <div class="input-group mb-3">
+                                                                            <input type="hidden" value="{{ $editEvent->id }}"
+                                                                                   name="edit_id">
+                                                                            <input type="text" class="form-control" id="name"
+                                                                                   name="name" value="{{ $editEvent->name }}"
+                                                                                   required
+                                                                                   placeholder="Ejemplo fiesta de cumpleaños"
+                                                                                   aria-label="Ejemplo fiesta de cumpleaños"
+                                                                                   aria-describedby="button-addon2">
+                                                                            <button class="btn btn-success" type="submit"
+                                                                                    id="button-addon2">Actualizar
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +158,7 @@
                     </div>
                     <div class="offcanvas-body">
                         <div>
-                             // Contenido
+                            // Contenido
                         </div>
                     </div>
                 </div>
@@ -147,7 +192,9 @@
                                         @endif
                                         @foreach(Event::all() as $eve)
                                             @if($eve->status === true)
-                                                <option selected class="text-success" value="{{ $eve->id }}">{{$eve->name}} - Active</option>
+                                                <option selected class="text-success"
+                                                        value="{{ $eve->id }}">{{$eve->name}} - Active
+                                                </option>
                                             @else
                                                 <option value="{{ $eve->id }}">{{$eve->name}} </option>
                                             @endif
