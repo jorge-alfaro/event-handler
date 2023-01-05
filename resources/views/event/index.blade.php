@@ -158,7 +158,10 @@
                     </div>
                     <div class="offcanvas-body">
                         <div>
-                            // Contenido
+                            <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                <strong>En construcción!</strong> <a href="#" class="alert-link">se está valorando, si es buena idea eliminar</a> un evento.
+                            </div>
                         </div>
                     </div>
                 </div>
