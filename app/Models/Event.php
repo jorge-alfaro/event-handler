@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+    const ACTIVE = true;
+    const INACTIVE = false;
+
     use HasFactory;
 
     protected $fillable = [

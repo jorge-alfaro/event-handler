@@ -120,4 +120,12 @@ class EventController extends Controller
         $eventActive->update();
         DB::commit();
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
+     */
+    public function eventActive()
+    {
+        return Event::query()->where('status', '=', Event::ACTIVE)->first();
+    }
 }

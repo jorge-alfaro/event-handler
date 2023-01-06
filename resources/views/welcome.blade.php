@@ -13,7 +13,6 @@
                         <a href="#" class="list-group-item list-group-item-action"> No hay eventos activos</a>
                     @endif
 
-                    {{--                    <a href="#" class="list-group-item list-group-item-action disabled">Morbi leo risus</a>--}}
                 </div>
             </div>
 
@@ -40,13 +39,13 @@
             </div>
 
             <div class="mt-2">
-                <div class="list-group">
+                <ul class="list-group">
                     <a href="#" class="list-group-item list-group-item-action active">Total por miembro</a>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        c/u
+                        <i class="fa-solid fa-user"></i>
                         <button type="button" class="btn btn-outline-success">$ {{ $theCheck }}</button>
                     </li>
-                </div>
+                </ul>
             </div>
 
             <div class="card mt-2">
@@ -54,7 +53,7 @@
                     <a href="#" class="list-group-item list-group-item-action active">Miembros</a>
                     @if(!$members)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            No hay miembros registrados
+                            <i class="fa-solid fa-user-slash"></i>  No hay miembros registrados.
                         </li>
                     @endif
                     @foreach($members as $m)

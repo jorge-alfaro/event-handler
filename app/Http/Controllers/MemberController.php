@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Member;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -9,14 +10,12 @@ use Illuminate\Support\Facades\Log;
 
 class MemberController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return view('members.index');
+        $event = (new EventController())->eventActive();
+        $members = $event->member;
+        return view('members.index',compact('members'));
     }
 
     /**
@@ -73,7 +72,7 @@ class MemberController extends Controller
      * @param Member $member
      * @return \Illuminate\Http\RedirectResponse|void
      */
-    public function update(Request $request, Member $member)
+    public function updatePaymentStatus(Request $request, Member $member)
     {
         try {
             $request->validate([
@@ -99,13 +98,38 @@ class MemberController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Member  $member
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Member $member
+     * @return \Illuminate\Http\RedirectResponse|void
+     */
+    public function update(Request $request, Member $member)
+    {
+        try {
+            $request->validate([
+                'name' => 'required',
+                'edit_id' => 'required'
+            ]);
+            $event = $member::findOrFail($request->edit_id);
+            if (!$event){
+                throw new ModelNotFoundException;
+            }
+
+            $event->name = $request->name;
+            $event->update();
+            return redirect()->route('members.index');
+        } catch (\Exception $exception) {
+            Log::error($exception);
+        }
+    }
+
+    /**
+     * @param Member $member
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Member $member)
     {
-        //
+        Log::debug($member);
+        $member->delete();
+        return redirect()->route('home');
     }
 }
