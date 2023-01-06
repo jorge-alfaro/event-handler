@@ -196,7 +196,7 @@
                                         @foreach(Event::all() as $eve)
                                             @if($eve->status === true)
                                                 <option selected class="text-success"
-                                                        value="{{ $eve->id }}">{{$eve->name}} - Active
+                                                        value="{{ $eve->id }}">{{$eve->name}} - Activo
                                                 </option>
                                             @else
                                                 <option value="{{ $eve->id }}">{{$eve->name}} </option>

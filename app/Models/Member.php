@@ -18,6 +18,6 @@ class Member extends Model
     ];
 
     protected $attributes = [
-        'payment_status' => '{"abonado": false,"pagado": false }'
+        'payment_status' => '{"a_piece": false,"paid": false }'
     ];
 }

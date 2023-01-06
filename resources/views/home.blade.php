@@ -38,6 +38,7 @@
             </div>
             <p class="text-info">La cuenta hasta ahora: $ {{ $totalCheckEvent }}</p>
         </div>
+
     </div>
 </div>
 @endsection

@@ -60,11 +60,13 @@
                     @foreach($members as $m)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             {{$m->name}}
-                                @if($m->payment_status['pagado'])
+                            @if($m->payment_status['paid'])
                                 <span class="badge bg-success rounded-pill"> Pagado</span>
+                            @elseif($m->payment_status['a_piece'])
+                                <span class="badge bg-success rounded-pill"> Abonado</span>
                             @else
                                 <span class="badge bg-success rounded-pill"> Pendiente</span>
-                                @endif
+                            @endif
 
                         </li>
                     @endforeach
