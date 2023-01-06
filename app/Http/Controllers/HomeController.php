@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Member;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
@@ -67,9 +68,12 @@ class HomeController extends Controller
             $eventName = $activeEvent->name;
             $totalCheckEvent = $activeEvent->theCheck();
             $timeAgo = $activeEvent->created_at->diffForHumans();
+            $activeEventId = $activeEvent->id;
+        }else{
+            $activeEventId = null;
         }
 
 
-        return view('home', compact('greetings', 'eventName', 'timeAgo', 'countMembers','totalCheckEvent'));
+        return view('home', compact('greetings', 'eventName', 'timeAgo', 'countMembers','totalCheckEvent','activeEventId'));
     }
 }

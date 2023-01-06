@@ -203,7 +203,7 @@
                                             @endif
                                         @endforeach
                                     </select>
-                                    <button class="btn btn-outline-danger" type="submit">Cambiar</button>
+                                    <button class="btn btn-outline-danger ms-2" type="submit">Cambiar</button>
                                 </div>
                             </div>
                         </form>

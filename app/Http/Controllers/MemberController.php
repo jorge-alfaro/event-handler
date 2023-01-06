@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -68,15 +69,33 @@ class MemberController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Member  $member
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Member $member
+     * @return \Illuminate\Http\RedirectResponse|void
      */
     public function update(Request $request, Member $member)
     {
-        //
+        try {
+            $request->validate([
+                'edit_id' => 'required'
+            ]);
+            $event = $member::findOrFail($request->edit_id);
+
+            if (!$event) {
+                throw new ModelNotFoundException;
+            }
+            $paid = (bool)$request->paid;
+            $aPiece = (bool)$request->a_piece;
+
+            $paymentStatus = $event->payment_status;
+            $paymentStatus['paid'] = $paid;
+            $paymentStatus['a_piece'] = $aPiece;
+            $event->payment_status = $paymentStatus;
+            $event->update();
+            return redirect()->route('home');
+        } catch (\Exception $exception) {
+            Log::error($exception);
+        }
     }
 
     /**

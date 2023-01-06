@@ -14,10 +14,17 @@ class Member extends Model
     ];
 
     protected $casts = [
-        'payment_status' => 'array'
+        'payment_status' => 'array',
+        'a_piece' => 'boolean',
+        'paid' => 'boolean'
     ];
 
     protected $attributes = [
         'payment_status' => '{"a_piece": false,"paid": false }'
     ];
+
+    public function event()
+    {
+        return $this->hasMany(Event::class);
+    }
 }

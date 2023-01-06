@@ -49,7 +49,6 @@ Route::get('/', function () {
         (new EventController())->addTheCheck($total, $event);
 
     $theCheck = number_format((float)$theCheck, 2, '.', ',');
-    // add the_check in column event
 
     return view('welcome', compact('event', 'products', 'total', 'theCheck', 'members'));
 })->name('main');
@@ -62,7 +61,6 @@ Route::middleware(['auth'])->group(function () {
     // Only authenticated users may access this route...
     Route::prefix('event')->group(function () {
         Route::get('/', [EventController::class, 'index'])->name('events.index');
-        Route::get('/create', [EventController::class, 'create'])->name('events.create');
         Route::post('/', [EventController::class, 'store'])->name('events.store');
         Route::put('/', [EventController::class, 'changeStatus'])->name('events.change');
         Route::put('/update', [EventController::class, 'update'])->name('events.update');
@@ -71,6 +69,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [MemberController::class, 'index'])->name('members.index');
         Route::get('/create', [MemberController::class, 'create'])->name('members.create');
         Route::post('/', [MemberController::class, 'store'])->name('members.store');
+        Route::put('/update',[MemberController::class,'update'])->name('members.update');
     });
     Route::prefix('product')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('products.index');
