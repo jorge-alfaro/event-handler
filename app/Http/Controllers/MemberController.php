@@ -15,7 +15,9 @@ class MemberController extends Controller
     {
         $event = (new EventController())->eventActive();
         $members = $event->member;
-        return view('members.index',compact('members'));
+        $eventInactive = (new EventController())->eventInactive();
+        $events = Event::all();
+        return view('members.index', compact('members', 'events', 'eventInactive'));
     }
 
     /**
@@ -102,20 +104,10 @@ class MemberController extends Controller
      * @param Member $member
      * @return \Illuminate\Http\RedirectResponse|void
      */
-    public function update(Request $request, Member $member)
+    public function update(Member $member)
     {
         try {
-            $request->validate([
-                'name' => 'required',
-                'edit_id' => 'required'
-            ]);
-            $event = $member::findOrFail($request->edit_id);
-            if (!$event){
-                throw new ModelNotFoundException;
-            }
-
-            $event->name = $request->name;
-            $event->update();
+           $member->update();
             return redirect()->route('members.index');
         } catch (\Exception $exception) {
             Log::error($exception);

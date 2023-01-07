@@ -67,9 +67,9 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::prefix('member')->group(function () {
         Route::get('/', [MemberController::class, 'index'])->name('members.index');
-        Route::get('/create', [MemberController::class, 'create'])->name('members.create');
         Route::post('/', [MemberController::class, 'store'])->name('members.store');
-        Route::put('/update',[MemberController::class,'updatePaymentStatus'])->name('members.update');
+        Route::put('/{member}/', [MemberController::class, 'update'])->name('members.update');
+        Route::put('/update/payment',[MemberController::class,'updatePaymentStatus'])->name('members.update.payment');
         Route::delete('/{member}/', [MemberController::class, 'destroy'])->name('members.destroy');
     });
     Route::prefix('product')->group(function () {

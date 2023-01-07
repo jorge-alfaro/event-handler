@@ -81,17 +81,17 @@
                                         </div>
                                         <div class="card-body">
                                             <!--foreach -->
-                                            @foreach(Event::query()->where('status',true)->get() as $editEvent)
+
                                                 <form method="POST" action="{{ route('events.update') }}">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="col-md-12 col-form-label text-md-start">
                                                         <div class="form-group">
                                                             <div class="input-group mb-3">
-                                                                <input type="hidden" value="{{ $editEvent->id }}"
+                                                                <input type="hidden" value="{{ $eventActive->id }}"
                                                                        name="edit_id">
                                                                 <input type="text" class="form-control" id="name"
-                                                                       name="name" value="{{ $editEvent->name }}"
+                                                                       name="name" value="{{ $eventActive->name }}"
                                                                        required
                                                                        placeholder="Ejemplo fiesta de cumpleaños"
                                                                        aria-label="Ejemplo fiesta de cumpleaños"
@@ -103,8 +103,7 @@
                                                         </div>
                                                     </div>
                                                 </form>
-                                            @endforeach
-                                            <!--endforeach -->
+
                                         </div>
                                     </div>
                                     <div class="accordion mt-3" id="accordionExample">
@@ -119,7 +118,7 @@
                                             <div id="collapseTwo" class="accordion-collapse collapse"
                                                  aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
-                                                    @foreach(Event::query()->where('status',false)->get() as $editEvent)
+                                                    @forelse ($eventInactive as $eventActive)
                                                         <form method="POST" action="{{ route('events.update') }}">
                                                             @csrf
                                                             @method('PUT')
@@ -127,12 +126,12 @@
                                                                 <div class="form-group">
                                                                     <div class="input-group mb-3">
                                                                         <input type="hidden"
-                                                                               value="{{ $editEvent->id }}"
+                                                                               value="{{ $eventActive->id }}"
                                                                                name="edit_id">
                                                                         <input type="text" class="form-control"
                                                                                id="name"
                                                                                name="name"
-                                                                               value="{{ $editEvent->name }}"
+                                                                               value="{{ $eventActive->name }}"
                                                                                required
                                                                                placeholder="Ejemplo fiesta de cumpleaños"
                                                                                aria-label="Ejemplo fiesta de cumpleaños"
@@ -144,7 +143,10 @@
                                                                 </div>
                                                             </div>
                                                         </form>
-                                                    @endforeach
+                                                    @empty
+                                                        <p class="text-bg-danger">No hay eventos.</p>
+                                                    @endforelse
+
                                                 </div>
                                             </div>
                                         </div>
@@ -178,13 +180,17 @@
                     <div class="card-header">Lista de eventos</div>
                     <div class="card-body">
                         <ul class="list-group">
-                            @foreach( Event::all() as $event)
+                            @forelse ($events as $event)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     {{ $event->name }}
                                     <span
                                         class="badge bg-primary rounded-pill">{{( $event->status === true) ? 'Activo' : 'Inactivo'  }}</span>
                                 </li>
-                            @endforeach
+                            @empty
+                                <li class="list-group-item d-flex justify-content-between align-items-center" value="">
+                                    No hay eventos creados
+                                </li>
+                            @endforelse
                         </ul>
                     </div>
                 </div>
@@ -197,10 +203,7 @@
                             <div class="form-group">
                                 <div class="d-flex">
                                     <select class="form-select" id="event_id" name="event_id">
-                                        @if(count(Event::all()) == 0)
-                                            <option value="">No hay eventos creados</option>
-                                        @endif
-                                        @foreach(Event::all() as $eve)
+                                        @forelse ($events as $eve)
                                             @if($eve->status === true)
                                                 <option selected class="text-success"
                                                         value="{{ $eve->id }}">{{$eve->name}} - Activo
@@ -208,7 +211,10 @@
                                             @else
                                                 <option value="{{ $eve->id }}">{{$eve->name}} </option>
                                             @endif
-                                        @endforeach
+                                        @empty
+                                            <option value="">No hay eventos creados</option>
+                                        @endforelse
+
                                     </select>
                                     <button class="btn btn-outline-danger ms-2" type="submit">Cambiar</button>
                                 </div>

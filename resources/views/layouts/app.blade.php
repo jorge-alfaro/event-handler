@@ -85,7 +85,7 @@
                                 <a class="nav-link" href="{{ route('products.create') }}">Productos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('members.create') }}">Miembros</a>
+                                <a class="nav-link" href="{{ route('members.index') }}">Miembros</a>
                             </li>
                             <li class="nav-item dropdown bg-info rounded-3 w-50 align-self-center ps-1 pe-2">
                                 <a id="btnGroupDrop1" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

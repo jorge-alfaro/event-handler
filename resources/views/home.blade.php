@@ -56,7 +56,7 @@
                     <div class="tab-pane fade active show" id="paid" role="tabpanel">
                         <ul class="list-group mt-3">
                             @foreach(Member::query()->where('event_id',$activeEventId)->get() as $m)
-                                <form method="POST" action="{{ route('members.update') }}">
+                                <form method="POST" action="{{ route('members.update.payment') }}">
                                     @csrf
                                     @method('PUT')
                                     @if(!$m->payment_status['paid'])
@@ -97,7 +97,7 @@
                     <div class="tab-pane fade" id="piece" role="tabpanel">
                         <ul class="list-group mt-3">
                             @foreach(Member::query()->where('event_id',$activeEventId)->get() as $m)
-                                <form method="POST" action="{{ route('members.update') }}">
+                                <form method="POST" action="{{ route('members.update.payment') }}">
                                     @csrf
                                     @method('PUT')
                                     @if($m->payment_status['paid'])

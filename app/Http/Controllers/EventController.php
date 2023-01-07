@@ -17,7 +17,10 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        return view('event.index');
+        $events = Event::all();
+        $eventInactive = $this->eventInactive();
+        $eventActive = $this->eventActive();
+        return view('event.index', compact('events','eventInactive','eventActive'));
     }
 
     /**
@@ -127,5 +130,9 @@ class EventController extends Controller
     public function eventActive()
     {
         return Event::query()->where('status', '=', Event::ACTIVE)->first();
+    }
+    public function eventInactive()
+    {
+        return Event::query()->where('status', '=', Event::INACTIVE)->get();
     }
 }
