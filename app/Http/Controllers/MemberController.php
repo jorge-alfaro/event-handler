@@ -128,8 +128,7 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        Log::debug($member);
         $member->delete();
-        return redirect()->route('home');
+        return redirect()->route('members.index');
     }
 }

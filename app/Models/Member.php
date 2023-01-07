@@ -10,7 +10,7 @@ class Member extends Model
     use HasFactory;
     protected $fillable = [
         "name",
-        "event_id"
+        "event_id",
     ];
 
     protected $casts = [

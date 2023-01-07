@@ -70,7 +70,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/create', [MemberController::class, 'create'])->name('members.create');
         Route::post('/', [MemberController::class, 'store'])->name('members.store');
         Route::put('/update',[MemberController::class,'updatePaymentStatus'])->name('members.update');
-        Route::delete('/delete', [MemberController::class, 'destroy'])->name('members.destroy');
+        Route::delete('/{member}/', [MemberController::class, 'destroy'])->name('members.destroy');
     });
     Route::prefix('product')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('products.index');
