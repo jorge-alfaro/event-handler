@@ -104,9 +104,10 @@ class MemberController extends Controller
      * @param Member $member
      * @return \Illuminate\Http\RedirectResponse|void
      */
-    public function update(Member $member)
+    public function update(Request $request, Member $member)
     {
         try {
+           $member->name = $request->name;
            $member->update();
             return redirect()->route('members.index');
         } catch (\Exception $exception) {
