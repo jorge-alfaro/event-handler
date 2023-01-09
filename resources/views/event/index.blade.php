@@ -7,14 +7,14 @@
             <div class="col-md-8">
                 <div class="text-center">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary rounded-start" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasEventCreate" aria-controls="offcanvasEventCreate">Crear
+                        <button type="button" class="btn btn-primary rounded-start" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasEventCreate" aria-controls="offcanvasEventCreate">Agregar
                         </button>
-                        <button type="button" class="btn btn-secondary me-1 ms-1" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasEventEdit" aria-controls="offcanvasEventEdit">Edita
+                        <button type="button" class="btn btn-primary me-1 ms-1" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasEventEdit" aria-controls="offcanvasEventEdit">Editar
                         </button>
-                        <button type="button" class="btn btn-secondary rounded-end" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasEventDelete" aria-controls="offcanvasEventDelete">Elimina
+                        <button type="button" class="btn btn-primary rounded-end" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasEventDelete" aria-controls="offcanvasEventDelete">Eliminar
                         </button>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                                                 <div class="row mb-0">
                                                     <div class="col-md-12">
                                                         <button type="submit" class="btn btn-success">
-                                                            Guardar
+                                                            Agregar
                                                         </button>
                                                     </div>
                                                 </div>
@@ -168,7 +168,7 @@
                         <div>
                             <div class="alert alert-dismissible alert-danger">
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <strong>En construcción!</strong> <a href="#" class="alert-link">se está valorando, si
+                                <strong><i class="fa-solid fa-calendar-xmark"></i></strong> <a href="#" class="alert-link">se está valorando, si
                                     es buena idea eliminar</a> un evento.
                             </div>
                         </div>

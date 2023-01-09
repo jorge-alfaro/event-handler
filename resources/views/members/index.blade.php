@@ -6,14 +6,14 @@
             <div class="col-md-8">
                 <div class="text-center">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary rounded-start" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasEventCreate" aria-controls="offcanvasEventCreate">Crear
+                        <button type="button" class="btn btn-primary rounded-start" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasEventCreate" aria-controls="offcanvasEventCreate">Agregar
                         </button>
-                        <button type="button" class="btn btn-secondary me-1 ms-1" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasEventEdit" aria-controls="offcanvasEventEdit">Edita
+                        <button type="button" class="btn btn-primary me-1 ms-1" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasEventEdit" aria-controls="offcanvasEventEdit">Editar
                         </button>
-                        <button type="button" class="btn btn-secondary rounded-end" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasEventDelete" aria-controls="offcanvasEventDelete">Elimina
+                        <button type="button" class="btn btn-primary rounded-end" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasEventDelete" aria-controls="offcanvasEventDelete">Eliminar
                         </button>
                     </div>
                 </div>
@@ -36,8 +36,8 @@
                                             <form method="POST" action="{{ route('members.store') }}">
                                                 @csrf
                                                 <div class="row mb-3">
-                                                    <label for="event_id" class="col-md-4 col-form-label text-md-end">Evento</label>
-                                                    <div class="col-md-6">
+                                                    <label for="event_id" class="col-md-12 col-form-label text-md-start">Evento</label>
+                                                    <div class="col-md-12">
                                                         <select required class="form-select" id="event_id" name="event_id">
                                                             @forelse ($events as $event)
                                                                 @if($event->status)
@@ -53,8 +53,8 @@
                                                 </div>
 
                                                 <div class="row mb-3">
-                                                    <label for="name" class="col-md-4 col-form-label text-md-end">Nombre</label>
-                                                    <div class="col-md-6">
+                                                    <label for="name" class="col-md-12 col-form-label text-md-start">Nombre</label>
+                                                    <div class="col-md-12">
                                                         <input id="name" type="text" class="form-control" name="name"
                                                                value="{{ old('name') }}" required autocomplete="name" autofocus placeholder=" ejem. Pedro">
                                                     </div>
@@ -100,8 +100,6 @@
                                                     <div class="col-md-12 col-form-label text-md-start">
                                                         <div class="form-group">
                                                             <div class="input-group mb-3">
-                                                                <input type="hidden" value="{{ $memberEdit->id }}"
-                                                                       name="edit_id">
                                                                 <input type="text" class="form-control" id="name"
                                                                        name="name" value="{{ $memberEdit->name }}"
                                                                        required
@@ -131,16 +129,32 @@
                 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasEventDelete"
                      aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Evento</h5>
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Miembro</h5>
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
-                        <div>
-                            <div class="alert alert-dismissible alert-danger">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <strong>En construcción!</strong> <a href="#" class="alert-link">se está valorando, si
-                                    es buena idea eliminar</a> un evento.
+                        <div class="card mt-2">
+                            <div class="card-header">Lista de miembros</div>
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    @forelse ($members as $member)
+                                        <li class="list-group-item">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="">{{ $member->name }}</div>
+                                                <form method="POST" action="{{ route('members.destroy',$member->id)  }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    @empty
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">No hay miembros registrados</li>
+                                        </ul>
+                                    @endforelse
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -148,18 +162,14 @@
 
                 <!-- Inicio -->
                 <div class="card mt-2">
-                    <div class="card-header">Lista de miembros</div>
+                    <div class="card-header">Lista de miembros en el evento <strong> {{ $eventName }}</strong></div>
                     <div class="card-body">
                         <ul class="list-group">
                             @forelse ($members as $member)
                                 <li class="list-group-item">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="">{{ $member->name }}</div>
-                                        <form method="POST" action="{{ route('members.destroy',$member->id)  }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Eliminar</button>
-                                        </form>
+                                        <div class="text-success"><i class="fa-solid fa-user-astronaut"></i> {{ $member->name }}</div>
+
                                     </div>
                                 </li>
                             @empty

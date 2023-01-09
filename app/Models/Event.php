@@ -20,6 +20,10 @@ class Event extends Model
         'status' => 'boolean',
     ];
 
+    public function name(){
+       return $this->name;
+    }
+
     public function theCheck(){
         return $this->the_check;
     }

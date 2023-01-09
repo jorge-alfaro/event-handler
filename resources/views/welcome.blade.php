@@ -7,11 +7,13 @@
             <div class="row mt-2">
                 <div class="col">
                     <div class="list-group text-center">
-                        <a href="#" class="list-group-item list-group-item-action active">Evento</a>
-                        @if($event)
-                            <a href="#" class="list-group-item list-group-item-action text-warning">{{ $event->name }}</a>
+                        <a href="{{ route('events.index') }}" class="list-group-item list-group-item-action active">Evento</a>
+                        @if($eventActive)
+                            <a href="{{ route('events.index') }}"
+                               class="list-group-item list-group-item-action text-warning">{{ $eventActive->name }}</a>
                         @else
-                            <a href="#" class="list-group-item list-group-item-action text-danger"> No hay eventos activos</a>
+                            <a href="#" class="list-group-item list-group-item-action text-danger"> No hay eventos
+                                activos</a>
                         @endif
 
                     </div>
@@ -21,16 +23,20 @@
                 <div class="col">
                     <div class="card">
                         <ul class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action active bg-success">Cuenta</a>
+                            <a href="{{ route('products.index') }}"
+                               class="list-group-item list-group-item-action active bg-success">Cuenta</a>
                             @forelse ($products as $p)
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    {{$p->name}}
-                                    <span class="badge bg-success rounded-pill"> $ {{ $p->price }}</span>
+                                <li class="list-group-item">
+                                    <a href="{{ route('products.index') }}" class="d-flex justify-content-between align-items-center text-decoration-none">
+                                        {{$p->name}}
+                                        <span class="badge bg-success rounded-pill"> $ {{ $p->price }}</span>
+                                    </a>
                                 </li>
                             @empty
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                  No hay productos registrados
-                                    <span class="badge bg-success rounded-pill"> <i class="fa-solid fa-ghost"></i></span>
+                                    No hay productos registrados
+                                    <span class="badge bg-success rounded-pill"> <i
+                                            class="fa-solid fa-ghost"></i></span>
                                 </li>
                             @endforelse
                             <!-- TOTAL -->

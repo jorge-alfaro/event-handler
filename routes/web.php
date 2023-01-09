@@ -29,28 +29,28 @@ Route::get('/', function () {
     $products = array();
     $members = array();
 
-    $event = Event::query()->where('status', '=', $active)->first();
-    if ($event) {
-        $memberCount = $event->member->count();
+    $eventActive = (new EventController())->eventActive();
+    if ($eventActive) {
+        $memberCount = $eventActive->member->count();
 
-        foreach ($event->product as $e) {
+        foreach ($eventActive->product as $e) {
             $products[] = $e;
             $total += $e->price;
         }
         if ($memberCount > 0) {
             $theCheck = $total / $memberCount;
         }
-        foreach ($event->member as $m) {
+        foreach ($eventActive->member as $m) {
             $members[] = $m;
         }
     }
 
         $total = number_format((float)$total, 2, '.', ',');
-        (new EventController())->addTheCheck($total, $event);
+        (new EventController())->addTheCheck($total, $eventActive);
 
     $theCheck = number_format((float)$theCheck, 2, '.', ',');
 
-    return view('welcome', compact('event', 'products', 'total', 'theCheck', 'members'));
+    return view('welcome', compact('eventActive', 'products', 'total', 'theCheck', 'members'));
 })->name('main');
 
 Auth::routes();
@@ -74,8 +74,9 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::prefix('product')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('products.index');
-        Route::get('/create', [ProductController::class, 'create'])->name('products.create');
         Route::post('/', [ProductController::class, 'store'])->name('products.store');
+        Route::put('/{product}/', [ProductController::class, 'update'])->name('products.update');
+        Route::delete('/{product}/', [ProductController::class, 'destroy'])->name('products.destroy');
     });
 
 });

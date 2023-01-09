@@ -82,7 +82,7 @@
                                 <a class="nav-link" href="{{ route('events.index') }}">Eventos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('products.create') }}">Productos</a>
+                                <a class="nav-link" href="{{ route('products.index') }}">Productos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('members.index') }}">Miembros</a>

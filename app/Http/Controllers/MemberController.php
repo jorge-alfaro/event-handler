@@ -14,10 +14,11 @@ class MemberController extends Controller
     public function index()
     {
         $event = (new EventController())->eventActive();
+        $eventName = $event->name;
         $members = $event->member;
         $eventInactive = (new EventController())->eventInactive();
         $events = Event::all();
-        return view('members.index', compact('members', 'events', 'eventInactive'));
+        return view('members.index', compact('members', 'events', 'eventInactive', 'eventName'));
     }
 
     /**
@@ -27,7 +28,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        return view('members.create');
+      //
     }
 
     /**
@@ -38,11 +39,11 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+       $memberValidated =  $request->validate([
             'name' => 'required',
-            "events_id"
+            "event_id" =>'required'
         ]);
-        $event = Member::create($request->all());
+        Member::create($memberValidated);
         return redirect('/');
 //        return view('members.index');
     }

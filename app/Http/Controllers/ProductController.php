@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return view('products.index');
+        $eventActive = (new EventController())->eventActive();
+        $eventName = $eventActive->name;
+        $products = $eventActive->product;
+        $eventInactive = (new EventController())->eventInactive();
+        $events = Event::all();
+        return view('products.index', compact('products', 'eventActive', 'events', 'eventInactive', 'eventName'));
     }
 
     /**
@@ -24,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+       //
     }
 
     /**
@@ -33,12 +36,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required'
+       $productValidated = $request->validate([
+           'name' => 'required',
+           'price' => 'required| numeric',
+           'event_id' => 'required'
         ]);
-        $event = Product::create($request->all());
-        return redirect()->route('main');
+        Product::create($productValidated);
+        return redirect()->route('products.index');
     }
 
     /**
@@ -64,25 +68,29 @@ class ProductController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse|void
      */
     public function update(Request $request, Product $product)
     {
-        //
+        try {
+            $product->name = $request->name;
+            $product->price = $request->price;
+            $product->update();
+            return redirect()->route('products.index');
+        } catch (\Exception $exception) {
+            Log::error($exception);
+        }
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index');
     }
 }
