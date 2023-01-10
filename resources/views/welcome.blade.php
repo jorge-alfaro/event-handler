@@ -62,14 +62,14 @@
                     <ul class="list-group">
                         <a href="#" class="list-group-item list-group-item-action active">Miembros</a>
                         @forelse ($members as $m)
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <li class="list-group-item d-flex justify-content-between @if($m->payment_status['paid'])text-decoration-line-through @endif @endifalign-items-center">
                                 {{$m->name}}
                                 @if($m->payment_status['paid'])
                                     <span class="badge bg-success rounded-pill"> Pagado</span>
                                 @elseif($m->payment_status['a_piece'])
-                                    <span class="badge bg-success rounded-pill"> Abonado</span>
+                                    <span class="badge bg-warning rounded-pill"> Abonado</span>
                                 @else
-                                    <span class="badge bg-success rounded-pill"> Pendiente</span>
+                                    <span class="badge bg-danger rounded-pill"> Pendiente</span>
                                 @endif
 
                             </li>
