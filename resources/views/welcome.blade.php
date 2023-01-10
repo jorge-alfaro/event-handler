@@ -27,7 +27,8 @@
                                class="list-group-item list-group-item-action active bg-success">Cuenta</a>
                             @forelse ($products as $p)
                                 <li class="list-group-item">
-                                    <a href="{{ route('products.index') }}" class="d-flex justify-content-between align-items-center text-decoration-none">
+                                    <a href="{{ route('products.index') }}"
+                                       class="d-flex justify-content-between align-items-center text-decoration-none">
                                         {{$p->name}}
                                         <span class="badge bg-success rounded-pill"> $ {{ $p->price }}</span>
                                     </a>
@@ -62,16 +63,18 @@
                     <ul class="list-group">
                         <a href="#" class="list-group-item list-group-item-action active">Miembros</a>
                         @forelse ($members as $m)
-                            <li class="list-group-item d-flex justify-content-between @if($m->payment_status['paid'])text-decoration-line-through @endif @endifalign-items-center">
-                                {{$m->name}}
-                                @if($m->payment_status['paid'])
-                                    <span class="badge bg-success rounded-pill"> Pagado</span>
-                                @elseif($m->payment_status['a_piece'])
-                                    <span class="badge bg-warning rounded-pill"> Abonado</span>
-                                @else
-                                    <span class="badge bg-danger rounded-pill"> Pendiente</span>
-                                @endif
-
+                            <li class="list-group-item ">
+                                <a class="d-flex justify-content-between align-items-center text-decoration-none"
+                                   href="{{ route('members.index') }}">
+                                    <span class="@if($m->payment_status['paid'])text-decoration-line-through @endif"> {{$m->name}}</span>
+                                    @if($m->payment_status['paid'])
+                                        <span class="badge bg-success rounded-pill"> Pagado</span>
+                                    @elseif($m->payment_status['a_piece'])
+                                        <span class="badge bg-warning rounded-pill"> Abonado</span>
+                                    @else
+                                        <span class="badge bg-danger rounded-pill"> Pendiente</span>
+                                    @endif
+                                </a>
                             </li>
                         @empty
                             <li class="list-group-item d-flex justify-content-between align-items-center">
