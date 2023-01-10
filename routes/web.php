@@ -44,8 +44,7 @@ Route::get('/', function () {
             $members[] = $m;
         }
     }
-
-        $total = number_format((float)$total, 2, '.', ',');
+    
         (new EventController())->addTheCheck($total, $eventActive);
 
     $theCheck = number_format((float)$theCheck, 2, '.', ',');

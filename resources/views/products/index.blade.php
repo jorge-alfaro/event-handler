@@ -72,7 +72,7 @@
                                                     <div class="col-md-12">
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text">$</span>
-                                                            <input id="price" type="number" class="form-control"
+                                                            <input id="price" type="text" class="form-control"
                                                                    name="price"
                                                                    value="{{ old('price') }}" required
                                                                    autocomplete="price" autofocus placeholder="100">

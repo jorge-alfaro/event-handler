@@ -13,4 +13,8 @@ class Product extends Model
         "price",
         "event_id"
     ];
+
+    protected $casts = [
+        'price' => 'decimal:2'
+    ];
 }
